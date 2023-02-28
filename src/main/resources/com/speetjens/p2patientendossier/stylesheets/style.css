@@ -1,0 +1,28 @@
+#container {
+    -fx-background-color: #222A31;
+    -fx-background-image: url("https://images.unsplash.com/photo-1602595688238-9fffe12d5af3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-font-family: 'Montserrat';
+    -fx-font-weight: 300;
+}
+
+.button {
+    -fx-background-color: rgba(255, 0, 0, 1);
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-family: 'Montserrat';
+    -fx-font-weight: 300;
+}
+
+#title {
+    -fx-font-size: 30px;
+    -fx-font-family: 'Montserrat';
+    -fx-font-weight: 600;
+}
+
+#number {
+    -fx-font-size: 30px;
+    -fx-font-family: 'Montserrat';
+    -fx-font-weight: 600;
+}
