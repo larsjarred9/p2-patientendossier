@@ -127,7 +127,7 @@ public class DashboardScreen {
 
         // when click on text gas
         person.setOnMouseClicked(e -> {
-            HelloApplication.mainStage.setScene(new PersonsScreen().getPersonsScene());
+            HelloApplication.mainStage.setScene(new PatientsScreen().getPersonsScene());
         });
 
         // WHen click on stroom text
