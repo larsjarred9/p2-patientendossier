@@ -1,6 +1,7 @@
 package com.speetjens.p2patientendossier.screens;
 
 import com.speetjens.p2patientendossier.HelloApplication;
+import com.speetjens.p2patientendossier.model.Patients;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -59,7 +60,8 @@ public class DashboardScreen {
             FlowPane stat1 = new FlowPane();
             stat1.setOrientation(Orientation.VERTICAL);
             Text stat1Title = new Text("Aantal patienten");
-            Text stat1Value = new Text("10");
+            Patients patients = new Patients();
+            Text stat1Value = new Text(String.valueOf(patients.getPatients().size()));
             stat1Value.setId("number");
 
             stat1.getChildren().addAll(stat1Title, stat1Value);
