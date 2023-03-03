@@ -1,6 +1,7 @@
 package com.speetjens.p2patientendossier.screens;
 
 import com.speetjens.p2patientendossier.HelloApplication;
+import com.speetjens.p2patientendossier.model.Users;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -80,13 +81,25 @@ public class LoginScreen {
 
         Button submit = new Button("Login →");
 
-        form.getChildren().addAll(usernameLabel, username, passwordLabel, password, submit);
+        Text error = new Text("");
+        error.setStyle("-fx-fill: red;");
+
+        form.getChildren().addAll(usernameLabel, username, passwordLabel, password, submit, error);
 
         content.getChildren().addAll(logoView, title, form);
 
         submit.setOnAction(e -> {
             // validate form values (if not empty username and password)
             if(username.getText().isEmpty() || password.getText().isEmpty()) {
+                error.setText("Please fill in all fields");
+                return;
+            }
+
+            // valiate from model (if username and password are correct)
+
+            Users user = new Users();
+            if(!user.comparePassword(username.getText(), password.getText())) {
+                error.setText("Username or password is incorrect");
                 return;
             }
 
