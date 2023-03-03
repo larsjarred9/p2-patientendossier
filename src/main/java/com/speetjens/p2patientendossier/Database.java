@@ -5,18 +5,42 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-    private Connection conn;
-
     public Database() {
-        String user = "root";
-        String passwd = "root";
-        String cString = "jdbc:mysql://localhost:8889/winkeldb?user=" + user + "&password=" + passwd;
-
         try {
-            this.conn = DriverManager.getConnection(cString);
-        } catch (SQLException var5) {
-            System.out.println("Could not establish database connection!");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static Connection getConnection() throws SQLException {
+        String host = "localhost";
+        String port = "3306";
+        String database = "patientendossier";
+        String user = "root";
+        String password = "";
+        Connection connection = null;
+
+        // Load the driver
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Driver loaded");
+        } catch (ClassNotFoundException exception) {
+            exception.printStackTrace();
         }
 
+        System.out.println("Connecting to database");
+
+        // Connect to the database
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+database+"?user=" + user + "&password=" + password);
+            System.out.println("Database connected");
+            return connection;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
     }
 }
