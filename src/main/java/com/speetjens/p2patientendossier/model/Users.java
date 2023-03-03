@@ -22,7 +22,7 @@ public class Users {
     }
 
     /**
-     * Film constructor
+     * User constructor
      */
     public Users() {
         this.username = "";
