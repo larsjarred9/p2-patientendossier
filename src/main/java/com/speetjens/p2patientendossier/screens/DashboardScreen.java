@@ -1,6 +1,8 @@
 package com.speetjens.p2patientendossier.screens;
 
 import com.speetjens.p2patientendossier.HelloApplication;
+import com.speetjens.p2patientendossier.model.Allergies;
+import com.speetjens.p2patientendossier.model.Medecine;
 import com.speetjens.p2patientendossier.model.Patients;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -72,12 +74,27 @@ public class DashboardScreen {
 
             Text stat2Title = new Text("Aantal medicijnen");
 
-            Text stat2Value = new Text("10");
+            Medecine medecine = new Medecine();
+            Text stat2Value = new Text(String.valueOf(medecine.getMedecines().size()));
             stat2Value.setId("number");
+
 
             stat2.getChildren().addAll(stat2Title, stat2Value);
 
-            stats.getChildren().addAll(stat1, stat2);
+            FlowPane stat3 = new FlowPane();
+
+            stat3.setOrientation(Orientation.VERTICAL);
+
+            Text stat3Title = new Text("Aantal alergien");
+
+            Allergies alergies = new Allergies();
+            Text stat3Value = new Text(String.valueOf(alergies.getAllergies().size()));
+            stat3Value.setId("number");
+
+
+            stat3.getChildren().addAll(stat3Title, stat3Value);
+
+            stats.getChildren().addAll(stat1, stat2, stat3);
 
 
 
