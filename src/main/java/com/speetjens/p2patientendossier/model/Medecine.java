@@ -35,7 +35,7 @@ public class Medecine {
         }
     }
 
-    public ArrayList<Object> getMedicine() {
+    public ArrayList<Object> getMedecines() {
         try {
             Connection connection = Database.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM medecine");
