@@ -10,26 +10,40 @@ import java.util.ArrayList;
 
 public class Medecine {
 
-    private final String name;
+    private final String name, treats, categories, storage, dosage;
 
     /**
      * Medecine constructor
      * @param name String
      */
-    public Medecine(String name) {
+    public Medecine(String name, String treats, String categories, String storage, String dosage) {
+
         this.name = name;
+        this.treats = treats;
+        this.categories = categories;
+        this.storage = storage;
+        this.dosage = dosage;
     }
 
     /**
      * Medecine constructor
      */
     public Medecine() {
+
         this.name = "";
+        this.treats = "";
+        this.categories = "";
+        this.storage = "";
+        this.dosage = "";
     }
 
     public Medecine(ResultSet result) {
         try {
             this.name = result.getString("name");
+            this.treats = result.getString("treats");
+            this.categories = result.getString("categories");
+            this.storage = result.getString("storage");
+            this.dosage = result.getString("dosage");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -58,7 +72,23 @@ public class Medecine {
     /**
      * @return String
      */
-    public String getMedicineName() {
+    public String getName() {
         return name;
+    }
+
+    public String getTreats() {
+        return treats;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public String getDosage() {
+        return dosage;
     }
 }
