@@ -2,105 +2,96 @@ package com.speetjens.p2patientendossier.screens;
 
 import com.speetjens.p2patientendossier.HelloApplication;
 import com.speetjens.p2patientendossier.model.Allergies;
-import com.speetjens.p2patientendossier.model.Medecine;
-import com.speetjens.p2patientendossier.model.Patients;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-public class DashboardScreen {
+import java.util.ArrayList;
+
+public class AllergiesScreen {
 
 
 
-    private final Scene dashboardScene;
+    private final Scene allergiesScene;
 
-    public DashboardScreen() {
+    public AllergiesScreen() {
         Pane container = new Pane();
         container.setId("container");
 
         container.getChildren().addAll(getHeader(), getContent());
 
-        dashboardScene = new Scene(container);
-        dashboardScene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900");
-        dashboardScene.getStylesheets().add(HelloApplication.class.getResource("stylesheets/style.css").toString());
+        allergiesScene = new Scene(container);
+        allergiesScene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900");
+        allergiesScene.getStylesheets().add(HelloApplication.class.getResource("stylesheets/style.css").toString());
     }
 
     /**
      * Get the dashboard scene
      * @return Scene
      */
-    public Scene getDashboardScene() {
-        return dashboardScene;
+    public Scene getAllergiesScene() {
+        return allergiesScene;
     }
 
     public Pane getContent() {
         FlowPane content = new FlowPane();
         content.setId("dashboard");
         content.setPadding(new Insets(50, 25, 50, 25));
+
+        content.setVgap(10);
         content.relocate(85, 100);
         content.setStyle("-fx-background-color: white;");
 
-            FlowPane items = new FlowPane();
+        FlowPane header = new FlowPane();
+        header.setOrientation(Orientation.HORIZONTAL);
+        header.setVgap(10);
 
-            String username = "gebruiker";
-
-            Text title = new Text("Welkom "+username+",");
-            title.setId("title");
-
-            Label text = new Label("Met de navigatie knoppen kunt u medicijnen beheren en deze medicatie toevoegen aan patienten. Onderstaand zijn enkle statistieken weergegeven.");
-            text.setWrapText(true);
-            items.getChildren().addAll(title, text);
-
-            FlowPane stats = new FlowPane();
-            stats.setHgap(10);
-            stats.setPadding(new Insets(50, 0, 50, 0));
-
-            FlowPane stat1 = new FlowPane();
-            stat1.setOrientation(Orientation.VERTICAL);
-            Text stat1Title = new Text("Aantal patienten");
-            Patients patients = new Patients();
-            Text stat1Value = new Text(String.valueOf(patients.getPatients().size()));
-            stat1Value.setId("number");
-
-            stat1.getChildren().addAll(stat1Title, stat1Value);
-
-            FlowPane stat2 = new FlowPane();
-
-            stat2.setOrientation(Orientation.VERTICAL);
-
-            Text stat2Title = new Text("Aantal medicijnen");
-
-            Medecine medecine = new Medecine();
-            Text stat2Value = new Text(String.valueOf(medecine.getMedecines().size()));
-            stat2Value.setId("number");
+        Text title = new Text("Alergieën");
+        title.setId("title");
+        Text text = new Text("Selecteer een alergie om de gegevens in te zien.");
+        Button button = new Button("Nieuwe medicijnen toevoegen");
+        header.getChildren().addAll(title, text, button);
 
 
-            stat2.getChildren().addAll(stat2Title, stat2Value);
-
-            FlowPane stat3 = new FlowPane();
-
-            stat3.setOrientation(Orientation.VERTICAL);
-
-            Text stat3Title = new Text("Aantal alergien");
-
-            Allergies alergies = new Allergies();
-            Text stat3Value = new Text(String.valueOf(alergies.getAllergies().size()));
-            stat3Value.setId("number");
+        // table
+        TableView<Allergies> table = new TableView();
+        table.setPadding(new Insets(10, 0, 0, 0));
 
 
-            stat3.getChildren().addAll(stat3Title, stat3Value);
+        TableColumn<Allergies, String> name =
+                new TableColumn<>("Naam");
 
-            stats.getChildren().addAll(stat1, stat2, stat3);
+        name.setCellValueFactory(
+                new PropertyValueFactory<>("name"));
+
+
+        // give colums a width
+        name.setPrefWidth(100);
+
+        table.getColumns().add(name);
+
+        ArrayList<Object> patientList = new Allergies().getAllergies();
+
+        patientList.forEach(e -> {
+            if(e instanceof Allergies) {
+                table.getItems().add((Allergies) e);
+            }
+        });
+
+        table.setPrefHeight(325);
 
 
 
-        content.getChildren().addAll(items, stats);
+        content.getChildren().addAll(header, table);
         return content;
     }
 
@@ -141,7 +132,7 @@ public class DashboardScreen {
         FlowPane.setMargin(logout, new Insets(0, 20, 0, 0));
 
         // Make current page text bold
-        home.setStyle("-fx-font-weight: bold;");
+        allergies.setStyle("-fx-font-weight: bold;");
 
         // when click on dasboard text
         home.setOnMouseClicked(e -> {
