@@ -181,16 +181,15 @@ public class PatientsScreen {
             HelloApplication.mainStage.setScene(new DashboardScreen().getDashboardScene());
         });
 
-        // when click on text gas
+        // when click on text patients
         person.setOnMouseClicked(e -> {
             HelloApplication.mainStage.setScene(new PatientsScreen().getPatientsScene());
         });
 
-        // WHen click on stroom text
+        // WHen click on text medication
         medication.setOnMouseClicked(e -> {
             HelloApplication.mainStage.setScene(new MedicationScreen().getMedicationScene());
         });
-
 
         // when click on logout text
         logout.setOnMouseClicked(e -> {
