@@ -7,4 +7,6 @@ module com.speetjens.p2patientendossier {
 
     opens com.speetjens.p2patientendossier to javafx.fxml;
     exports com.speetjens.p2patientendossier;
+
+    opens com.speetjens.p2patientendossier.model to javafx.base;
 }
