@@ -152,6 +152,7 @@ public class MedicationScreen {
         Text home = new Text("Dashboard");
         Text person = new Text("Patienten");
         Text medication = new Text("Medicaties");
+        Text allergies = new Text("Allergieën");
         Text logout = new Text("Uitloggen");
 
         // add margin to navigation items
@@ -159,6 +160,7 @@ public class MedicationScreen {
         FlowPane.setMargin(home, new Insets(0, 20, 0, 0));
         FlowPane.setMargin(person, new Insets(0, 20, 0, 0));
         FlowPane.setMargin(medication, new Insets(0, 20, 0, 0));
+        FlowPane.setMargin(allergies, new Insets(0, 20, 0, 0));
         FlowPane.setMargin(logout, new Insets(0, 20, 0, 0));
 
         // Make current page text bold
@@ -179,6 +181,11 @@ public class MedicationScreen {
             HelloApplication.mainStage.setScene(new MedicationScreen().getMedicationScene());
         });
 
+        // WHen click on text allergies
+        allergies.setOnMouseClicked(e -> {
+            HelloApplication.mainStage.setScene(new AllergiesScreen().getAllergiesScene());
+        });
+
         // when click on logout text
         logout.setOnMouseClicked(e -> {
             HelloApplication.mainStage.setScene(new LoginScreen().getLoginScreen());
@@ -186,7 +193,7 @@ public class MedicationScreen {
 
 
         // add navigation items to navigation bar
-        navigation.getChildren().addAll(logoView, home, person, medication, logout);
+        navigation.getChildren().addAll(logoView, home, person, medication, allergies, logout);
 
         header.getChildren().addAll(navigation);
 
