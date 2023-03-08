@@ -23,7 +23,7 @@ public class HelloApplication extends Application {
         mainStage.setWidth(applicationSize[0]);
         mainStage.setHeight(applicationSize[1]);
         mainStage.setResizable(false);
-        mainStage.setTitle("ADRZ - Patientdossier");
+        mainStage.setTitle("AZ - Patientdossier");
 
         mainStage.setScene(new LoginScreen().getLoginScreen());
         mainStage.show();
