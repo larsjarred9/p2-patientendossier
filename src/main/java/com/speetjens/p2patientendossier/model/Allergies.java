@@ -59,4 +59,18 @@ public class Allergies {
     public String getName() {
         return name;
     }
+
+    public Boolean addAllergy(Allergies allergies) {
+        try {
+            Connection connection = Database.getConnection();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO allergies (name) VALUES (?)");
+            statement.setString(1, allergies.getName());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 }

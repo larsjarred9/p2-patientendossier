@@ -1,6 +1,8 @@
 package com.speetjens.p2patientendossier.screens;
 
 import com.speetjens.p2patientendossier.HelloApplication;
+import com.speetjens.p2patientendossier.forms.AllergyForm;
+import com.speetjens.p2patientendossier.forms.MedicineForm;
 import com.speetjens.p2patientendossier.model.Allergies;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -60,6 +62,10 @@ public class AllergiesScreen {
         Text text = new Text("Selecteer een alergie om de gegevens in te zien.");
         Button button = new Button("Nieuwe medicijnen toevoegen");
         header.getChildren().addAll(title, text, button);
+
+        button.setOnAction(e -> {
+            HelloApplication.mainStage.setScene(new AllergyForm().getAllergyForm());
+        });
 
 
         // table
