@@ -18,6 +18,8 @@ public class HelloApplication extends Application {
     public void start(Stage stage) {
 
         mainStage = stage;
+        Image icon = new Image(getClass().getResourceAsStream("/com/speetjens/p2patientendossier/images/icon.png"));
+        mainStage.getIcons().add(icon);
         mainStage.setWidth(applicationSize[0]);
         mainStage.setHeight(applicationSize[1]);
         mainStage.setResizable(false);
