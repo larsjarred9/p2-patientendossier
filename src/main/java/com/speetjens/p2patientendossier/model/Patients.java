@@ -139,4 +139,30 @@ public class Patients {
     public String getCountry() {
         return country;
     }
+
+    public Boolean addPatients(Patients patients) {
+        try {
+            Connection connection = Database.getConnection();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO patients (first_name, last_name, email, phone, birth_date, sex, nationality, address, zip, city, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            statement.setString(1, patients.getFirstName());
+            statement.setString(2, patients.getLastName());
+            statement.setString(3, patients.getEmail());
+            statement.setString(4, patients.getPhone());
+            statement.setString(5, patients.getBirthDate());
+            statement.setString(6, patients.getSex());
+            statement.setString(7, patients.getNationality());
+            statement.setString(8, patients.getAddress());
+            statement.setString(9, patients.getZip());
+            statement.setString(10, patients.getCity());
+            statement.setString(11, patients.getCountry());
+            statement.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 }

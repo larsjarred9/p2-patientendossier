@@ -1,6 +1,7 @@
 package com.speetjens.p2patientendossier.screens;
 
 import com.speetjens.p2patientendossier.HelloApplication;
+import com.speetjens.p2patientendossier.forms.PatientForm;
 import com.speetjens.p2patientendossier.model.Patients;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -59,6 +60,10 @@ public class PatientsScreen {
             Text text = new Text("Selecteer een persoon om de gegevens in te zien.");
             Button button = new Button("Nieuwe Patient toevoegen");
             header.getChildren().addAll(title, text, button);
+
+            button.setOnAction(e -> {
+                HelloApplication.mainStage.setScene(new PatientForm().getPatientForm());
+            });
 
 
             // table
