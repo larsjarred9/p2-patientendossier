@@ -157,12 +157,13 @@ public class Patients {
             statement.setString(10, patients.getCity());
             statement.setString(11, patients.getCountry());
             statement.executeUpdate();
-            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
+
+        return true;
 
     }
 }

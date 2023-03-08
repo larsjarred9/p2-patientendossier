@@ -103,10 +103,10 @@ public class Medecine {
             statement.setString(4, medecine.getStorage());
             statement.setString(5, medecine.getDosage());
             statement.executeUpdate();
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
+        return true;
     }
 }
