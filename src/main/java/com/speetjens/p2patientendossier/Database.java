@@ -15,11 +15,11 @@ public class Database {
 
 
     public static Connection getConnection() throws SQLException {
-        String host = "localhost";
+        String host = "94.130.165.25";
         String port = "3306";
-        String database = "patientendossier";
-        String user = "root";
-        String password = "";
+        String database = "s1367_patients";
+        String user = "u1367_SoHn7Emjhd";
+        String password = "vK.@6MG85g3Y8KeYdc42u^Z5";
         Connection connection = null;
 
         // Load the driver

@@ -2,9 +2,7 @@ package com.speetjens.p2patientendossier.forms;
 
 import com.speetjens.p2patientendossier.HelloApplication;
 import com.speetjens.p2patientendossier.model.Allergies;
-import com.speetjens.p2patientendossier.model.Medecine;
 import com.speetjens.p2patientendossier.screens.AllergiesScreen;
-import com.speetjens.p2patientendossier.screens.MedicationScreen;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;

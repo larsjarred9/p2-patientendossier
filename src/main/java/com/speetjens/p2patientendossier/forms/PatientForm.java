@@ -2,18 +2,15 @@ package com.speetjens.p2patientendossier.forms;
 
 import com.speetjens.p2patientendossier.HelloApplication;
 import com.speetjens.p2patientendossier.model.Patients;
-import com.speetjens.p2patientendossier.screens.LoginScreen;
 import com.speetjens.p2patientendossier.screens.PatientsScreen;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class PatientForm {
