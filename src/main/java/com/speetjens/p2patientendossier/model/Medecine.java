@@ -91,4 +91,22 @@ public class Medecine {
     public String getDosage() {
         return dosage;
     }
+
+    public Boolean addMedicine(Medecine medecine) {
+
+        try {
+            Connection connection = Database.getConnection();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO medecine (name, treats, categories, storage, dosage) VALUES (?, ?, ?, ?, ?)");
+            statement.setString(1, medecine.getName());
+            statement.setString(2, medecine.getTreats());
+            statement.setString(3, medecine.getCategories());
+            statement.setString(4, medecine.getStorage());
+            statement.setString(5, medecine.getDosage());
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

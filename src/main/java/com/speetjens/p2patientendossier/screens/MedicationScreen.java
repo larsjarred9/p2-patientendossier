@@ -1,6 +1,7 @@
 package com.speetjens.p2patientendossier.screens;
 
 import com.speetjens.p2patientendossier.HelloApplication;
+import com.speetjens.p2patientendossier.forms.MedicineForm;
 import com.speetjens.p2patientendossier.model.Medecine;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -9,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -60,6 +59,10 @@ public class MedicationScreen {
         Text text = new Text("Selecteer een medicijn om de gegevens in te zien.");
         Button button = new Button("Nieuwe medicijnen toevoegen");
         header.getChildren().addAll(title, text, button);
+
+        button.setOnAction(e -> {
+            HelloApplication.mainStage.setScene(new MedicineForm().getMedecineForm());
+        });
 
 
         // table
