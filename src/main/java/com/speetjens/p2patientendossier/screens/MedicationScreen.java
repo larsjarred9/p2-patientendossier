@@ -2,7 +2,9 @@ package com.speetjens.p2patientendossier.screens;
 
 import com.speetjens.p2patientendossier.HelloApplication;
 import com.speetjens.p2patientendossier.forms.MedicineForm;
+import com.speetjens.p2patientendossier.model.Allergies;
 import com.speetjens.p2patientendossier.model.Medecine;
+import com.speetjens.p2patientendossier.model.Patients;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -57,10 +59,11 @@ public class MedicationScreen {
         Text title = new Text("Medicatie");
         title.setId("title");
         Text text = new Text("Selecteer een medicijn om de gegevens in te zien.");
-        Button button = new Button("Nieuwe medicijnen toevoegen");
-        header.getChildren().addAll(title, text, button);
+        Button add = new Button("Medicijn toevoegen");
+        Button remove = new Button("Medicijn verwijderen");
+        header.getChildren().addAll(title, text, add, remove);
 
-        button.setOnAction(e -> {
+        add.setOnAction(e -> {
             HelloApplication.mainStage.setScene(new MedicineForm().getMedecineForm());
         });
 
@@ -123,6 +126,22 @@ public class MedicationScreen {
         });
 
         table.setPrefHeight(325);
+
+        remove.setOnAction(e -> {
+            Medecine selectedItem = table.getSelectionModel().getSelectedItem();
+
+            if(selectedItem != null) {
+                table.getItems().remove(selectedItem);
+
+                // get id from item
+                Integer id = selectedItem.getId();
+
+                // remove from database
+                new Medecine().removeMedicine(id);
+            }
+
+            table.refresh();
+        });
 
 
 

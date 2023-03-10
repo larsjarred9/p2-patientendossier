@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Medecine {
 
     private final String name, treats, categories, storage, dosage;
+    private Integer id;
 
     /**
      * Medecine constructor
@@ -39,6 +40,7 @@ public class Medecine {
 
     public Medecine(ResultSet result) {
         try {
+            this.id = result.getInt("id");
             this.name = result.getString("name");
             this.treats = result.getString("treats");
             this.categories = result.getString("categories");
@@ -92,6 +94,10 @@ public class Medecine {
         return dosage;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Boolean addMedicine(Medecine medecine) {
 
         try {
@@ -107,6 +113,20 @@ public class Medecine {
             e.printStackTrace();
             return false;
         }
+        return true;
+    }
+
+    public Boolean removeMedicine(Integer id) {
+        try {
+            Connection connection = Database.getConnection();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM medecine WHERE id = ?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
         return true;
     }
 }
