@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Patients {
-
     private final String firstName, lastName, email, phone, birthDate, sex, nationality, address, zip, city, country;
+    private int id;
 
     /**
      * Patient constructor
@@ -46,6 +46,7 @@ public class Patients {
      */
     public Patients(ResultSet result){
         try {
+            this.id = result.getInt("id");
             this.firstName = result.getString("first_name");
             this.lastName = result.getString("last_name");
             this.email = result.getString("email");
@@ -74,26 +75,6 @@ public class Patients {
         this.zip = "";
         this.city = "";
         this.country = "";
-    }
-
-    public ArrayList<Object> getPatients() {
-        try {
-            Connection connection = Database.getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM patients");
-            ResultSet result = statement.executeQuery();
-
-            ArrayList<Object> patients = new ArrayList<>();
-
-            while (result.next()) {
-                patients.add(new Patients(result));
-            }
-
-            return patients;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     public String getFirstName() {
@@ -140,6 +121,30 @@ public class Patients {
         return country;
     }
 
+    public String getId() {
+        return String.valueOf(id);
+    }
+
+    public ArrayList<Object> getPatients() {
+        try {
+            Connection connection = Database.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM patients");
+            ResultSet result = statement.executeQuery();
+
+            ArrayList<Object> patients = new ArrayList<>();
+
+            while (result.next()) {
+                patients.add(new Patients(result));
+            }
+
+            return patients;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public Boolean addPatients(Patients patients) {
         try {
             Connection connection = Database.getConnection();
@@ -165,5 +170,20 @@ public class Patients {
 
         return true;
 
+    }
+
+    public Boolean removePatient(String id) {
+        try {
+            Connection connection = Database.getConnection();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM patients WHERE id = ?");
+            statement.setString(1, id);
+            statement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 }

@@ -56,10 +56,11 @@ public class PatientsScreen {
             Text title = new Text("Patienten");
             title.setId("title");
             Text text = new Text("Selecteer een persoon om de gegevens in te zien.");
-            Button button = new Button("Nieuwe Patient toevoegen");
-            header.getChildren().addAll(title, text, button);
+            Button add = new Button("Patient toevoegen");
+            Button remove = new Button("Patient verwijderen");
+            header.getChildren().addAll(title, text, add, remove);
 
-            button.setOnAction(e -> {
+            add.setOnAction(e -> {
                 HelloApplication.mainStage.setScene(new PatientForm().getPatientForm());
             });
 
@@ -135,6 +136,22 @@ public class PatientsScreen {
             });
 
             table.setPrefHeight(325);
+
+        remove.setOnAction(e -> {
+            Patients selectedItem = table.getSelectionModel().getSelectedItem();
+
+            if(selectedItem != null) {
+                table.getItems().remove(selectedItem);
+
+                // get id from item
+                String id = selectedItem.getId();
+
+                // remove from database
+                new Patients().removePatient(id);
+            }
+
+            table.refresh();
+        });
 
 
 
