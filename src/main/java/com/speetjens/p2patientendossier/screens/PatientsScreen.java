@@ -144,7 +144,7 @@ public class PatientsScreen {
                 table.getItems().remove(selectedItem);
 
                 // get id from item
-                String id = selectedItem.getId();
+                Integer id = selectedItem.getId();
 
                 // remove from database
                 new Patients().removePatient(id);

@@ -121,8 +121,8 @@ public class Patients {
         return country;
     }
 
-    public String getId() {
-        return String.valueOf(id);
+    public Integer getId() {
+        return id;
     }
 
     public ArrayList<Object> getPatients() {
@@ -172,11 +172,11 @@ public class Patients {
 
     }
 
-    public Boolean removePatient(String id) {
+    public Boolean removePatient(Integer id) {
         try {
             Connection connection = Database.getConnection();
             PreparedStatement statement = connection.prepareStatement("DELETE FROM patients WHERE id = ?");
-            statement.setString(1, id);
+            statement.setInt(1, id);
             statement.executeUpdate();
 
         } catch (Exception e) {
